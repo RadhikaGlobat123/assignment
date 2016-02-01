@@ -1,0 +1,167 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Expense Manager</title>
+		<script src="js/jquery-1.12.0.min.js"></script>
+		<link rel="stylesheet" href="css/jquery-ui.css">
+		<link rel="stylesheet" href="css/style.css">
+ 		<script src="js/jquery-ui.js"></script>
+		<script>
+			$(function(){
+				
+				var count=0;
+				$("#datepay").datepicker({
+					dateFormat: 'dd-mm-yy'
+				});
+				$("#datepay").on("change",function(){
+					var curDate = $("#datepay").val();
+					$("#daterec").datepicker({
+					dateFormat: 'dd-mm-yy',
+					minDate: curDate
+				}).removeClass("hasDatepicker");
+				})
+				
+				$('#recur').click(function() {
+				    if($(this).is(':checked'))
+				       $("#daterec").show();
+				    else {
+					        $("#daterec").hide();
+					        $("#daterec").val("");
+					   		$("#daterecErr").html("");
+				   		}
+				});
+
+				
+				$("#add").on("click", function(event){
+
+				var payVal = $("#payee").val();
+				var amtVal = $("#amt").val();
+				var dateVal = $("#datepay").val();
+				var payTypeVal= $("input[type='radio']:checked").val();
+				var dateRecVal = $("#daterec").val();
+				
+				if(payVal == ""){
+					$("#payeeErr").html("Payee is required");
+				}else {
+					$("#payeeErr").html("");
+				}
+				if(amtVal == ""){dateVal
+					$("#amtErr").html("Amount is required");
+				}else {
+					$("#amtErr").html("");
+				}
+				if(dateVal == ""){
+					$("#datepayErr").html("Date is required");
+				}else {
+					$("#datepayErr").html("");
+				}
+				var catVal = $("#category option:selected").val();
+				if(catVal=="none"){
+					$("#catErr").html("category is required");
+				}
+				else{
+					$("#catErr").html("");
+				}
+
+				if($("#recur").is(":checked")){
+					if($("#daterec").val()==""){
+						$("#daterecErr").html("Recurring is required");
+					}else{
+						$("#daterecErr").html("");
+					}
+				}else{
+					$("#daterec").val("");
+					$("#daterecErr").html("");
+				}
+				var obj = {};
+				
+       			obj["payeeObj"] = payVal;
+       			obj["amountObj"] = amtVal;
+       			obj["dateObj"] = dateVal;
+       			obj["payTypeObj"] = payTypeVal;
+       			obj["payCatObj"] = catVal;
+       			obj["dateRecObj"] = dateRecVal;
+       			       			
+       			if($('#recur').is(":checked")){ 
+					if(payVal!="" && amtVal!="" && dateVal!="" && catVal!="none" && dateRecVal!=""){
+						count= count+1;
+						$("tbody").append("<tr id='row"+count+"'><td>"+count+"</td><td>"+obj.payeeObj+"</td><td>"+obj.amountObj+"</td><td>"+obj.dateObj+"</td><td>"+obj.payTypeObj+"</td><td>"+obj.payCatObj+"</td><td>"+obj.dateRecObj+"</td></tr>");
+					}
+				}else {
+					if(payVal!="" && amtVal!="" && dateVal!="" && catVal!="none"){
+						count= count+1;
+						$("tbody").append("<tr id='row"+count+"'><td>"+count+"</td><td>"+obj.payeeObj+"</td><td>"+obj.amountObj+"</td><td>"+obj.dateObj+"</td><td>"+obj.payTypeObj+"</td><td>"+obj.payCatObj+"</td><td>"+obj.dateRecObj+"</td><td><a href='' id='edit"+count+"'>Edit</a></td></tr>");
+					}
+				}
+			})
+			});
+				
+		</script>
+	</head>
+	<body>
+			<div class="container">
+				<h1>Expense Manager</h1>
+				<div class="leftPanel">
+					<div class="sub-container">
+						<label>Payeee</label>
+						<input type="text" name="payee" id="payee">
+						<span id="payeeErr"></span>
+					</div>
+					
+					<div class="sub-container">
+						<label>Amount</label>
+						<input type="number" name="amt" id="amt" min="1">
+						<span id="amtErr"></span>
+					</div>
+					<div class="sub-container">
+						<label>Date</label>
+						<input type="text" name="datepay" id="datepay">
+						<span id="datepayErr"></span>
+					</div>
+					<div class="sub-container">
+						<label>Type</label>
+						<input type="radio" name="payType" value="income" checked> income
+		  				<input type="radio" name="payType" value="expense"> expense
+		  				<span id="datepayErr"></span>
+					</div>
+					<div class="sub-container">
+						<label>Category</label>
+						<select id="category" name="category">
+							  <option value="none">-Select-</option>
+							  <option value="Loan">Loan</option>
+							  <option value="Salary">Salary</option>
+							  <option value="Expenditure">Expenditure</option>
+						</select>
+						<span id="catErr"></span>
+					</div>
+					<div class="sub-container">
+						<label>Recurring</label>
+						<input type="checkbox" name="recur" id="recur" value="0" checked> 
+						<input type="text" name="daterec" id="daterec">
+						<span id="daterecErr"></span>
+						
+					</div>
+					<div class="sub-container">
+						<button id="add" name="add">ADD</button>
+					</div>
+				</div>
+				<div class="rightPanel">
+					<table>
+						<thead>
+						<tr>
+							<th>Sr.No</th>
+							<th>Payeee</th>
+							<th>Amount</th>
+							<th>Date</th>
+							<th>Type</th>
+							<th>Category</th>
+							<th>Recurring</th>
+						<tr>
+						</thead>
+						<tbody></tbody>
+					</table>
+				</div>
+				
+			</div>
+	</body>
+</html>
