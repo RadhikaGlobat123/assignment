@@ -6,97 +6,11 @@
 		<link rel="stylesheet" href="css/jquery-ui.css">
 		<link rel="stylesheet" href="css/style.css">
  		<script src="js/jquery-ui.js"></script>
-		<script>
-			$(function(){
-				
-				var count=0;
-				$("#datepay").datepicker({
-					dateFormat: 'dd-mm-yy'
-				});
-				$("#datepay").on("change",function(){
-					var curDate = $("#datepay").val();
-					$("#daterec").datepicker({
-					dateFormat: 'dd-mm-yy',
-					minDate: curDate
-				}).removeClass("hasDatepicker");
-				})
-				
-				$('#recur').click(function() {
-				    if($(this).is(':checked'))
-				       $("#daterec").show();
-				    else {
-					        $("#daterec").hide();
-					        $("#daterec").val("");
-					   		$("#daterecErr").html("");
-				   		}
-				});
-
-				
-				$("#add").on("click", function(event){
-
-				var payVal = $("#payee").val();
-				var amtVal = $("#amt").val();
-				var dateVal = $("#datepay").val();
-				var payTypeVal= $("input[type='radio']:checked").val();
-				var dateRecVal = $("#daterec").val();
-				
-				if(payVal == ""){
-					$("#payeeErr").html("Payee is required");
-				}else {
-					$("#payeeErr").html("");
-				}
-				if(amtVal == ""){dateVal
-					$("#amtErr").html("Amount is required");
-				}else {
-					$("#amtErr").html("");
-				}
-				if(dateVal == ""){
-					$("#datepayErr").html("Date is required");
-				}else {
-					$("#datepayErr").html("");
-				}
-				var catVal = $("#category option:selected").val();
-				if(catVal=="none"){
-					$("#catErr").html("category is required");
-				}
-				else{
-					$("#catErr").html("");
-				}
-
-				if($("#recur").is(":checked")){
-					if($("#daterec").val()==""){
-						$("#daterecErr").html("Recurring is required");
-					}else{
-						$("#daterecErr").html("");
-					}
-				}else{
-					$("#daterec").val("");
-					$("#daterecErr").html("");
-				}
-				var obj = {};
-				
-       			obj["payeeObj"] = payVal;
-       			obj["amountObj"] = amtVal;
-       			obj["dateObj"] = dateVal;
-       			obj["payTypeObj"] = payTypeVal;
-       			obj["payCatObj"] = catVal;
-       			obj["dateRecObj"] = dateRecVal;
-       			       			
-       			if($('#recur').is(":checked")){ 
-					if(payVal!="" && amtVal!="" && dateVal!="" && catVal!="none" && dateRecVal!=""){
-						count= count+1;
-						$("tbody").append("<tr id='row"+count+"'><td>"+count+"</td><td>"+obj.payeeObj+"</td><td>"+obj.amountObj+"</td><td>"+obj.dateObj+"</td><td>"+obj.payTypeObj+"</td><td>"+obj.payCatObj+"</td><td>"+obj.dateRecObj+"</td></tr>");
-					}
-				}else {
-					if(payVal!="" && amtVal!="" && dateVal!="" && catVal!="none"){
-						count= count+1;
-						$("tbody").append("<tr id='row"+count+"'><td>"+count+"</td><td>"+obj.payeeObj+"</td><td>"+obj.amountObj+"</td><td>"+obj.dateObj+"</td><td>"+obj.payTypeObj+"</td><td>"+obj.payCatObj+"</td><td>"+obj.dateRecObj+"</td><td><a href='' id='edit"+count+"'>Edit</a></td></tr>");
-					}
-				}
-			})
-			});
-				
-		</script>
+ 		<script src="js/validation.js"></script>
+ 		<script src="js/expense.js"></script>
+ 		<script src="js/expenseclass.js"></script>
+ 		<script src="js/add-data.js"></script>
+		
 	</head>
 	<body>
 			<div class="container">
@@ -137,12 +51,15 @@
 					<div class="sub-container">
 						<label>Recurring</label>
 						<input type="checkbox" name="recur" id="recur" value="0" checked> 
-						<input type="text" name="daterec" id="daterec">
+						<input type="text" name="daterec" id="daterec" readonly>
 						<span id="daterecErr"></span>
 						
 					</div>
 					<div class="sub-container">
 						<button id="add" name="add">ADD</button>
+						<input type="hidden" id="dataId">
+						<button id="save" name="save" class="hide">SAVE</button>
+						<button id="addNew" name="addNew" class="hide">Add New</button>
 					</div>
 				</div>
 				<div class="rightPanel">
@@ -156,6 +73,7 @@
 							<th>Type</th>
 							<th>Category</th>
 							<th>Recurring</th>
+							<th>Action</th>
 						<tr>
 						</thead>
 						<tbody></tbody>
