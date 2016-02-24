@@ -1,0 +1,32 @@
+<div class="row" >
+	<div class="form-group col-xs-1">
+		<label for="code">Title</label>			
+	</div>
+	<div class="form-group col-xs-4">	
+		<input type="text" name="editissueTitle" id="editissueTitle" ng-model="editCtrl.editissueTitle" class="form-control"/>
+	</div>
+</div>
+<div class="row" >
+	<div class="form-group col-xs-1">
+		<label for="code">Description</label>			
+	</div>
+	<div class="form-group col-xs-4">	
+		<input type="text" name="issueDesc" id="issueDesc" ng-model="editCtrl.issueDesc" class="form-control"/>
+	</div>
+</div>
+ <div class="row" >
+	<div class="form-group col-xs-1">
+		<label for="code">Assignee</label>			
+	</div>
+	<div class="form-group col-xs-4">	
+		<input type="text" name="assignee" id="assignee" ng-model="editCtrl.assignee" class="form-control"/>
+	</div>
+</div>
+<div class="row" >
+	<div class="form-group col-xs-5 col-lg-4">
+		<button ng-click='editCtrl.updateIssue()'  class="btn btn-info">Submit</button>
+	</div>
+</div>
+ 
+
+

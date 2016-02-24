@@ -1,0 +1,31 @@
+<!doctype html>
+<html ng-app="gitApp">
+<head>
+   <script src="js/angular.min.js"></script>
+   <script src="js/script.js"></script>
+   <script src="js/jquery-1.12.0.min.js"></script>
+   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="js/bootstrap.min.js"></script>
+   <title>Github API</title>
+  
+</head>
+
+<body ng-controller="createIssueCtrl as issueCtrl">   
+  	<div class="container">
+    	<h1>List Issues</h1>
+		<form role="form">
+		    <div class="row">
+			    <div class="form-group col-xs-5 col-lg-4">
+		   			<label for="code">Username</label>
+		       		<input type="text" name="gname" id="gname" ng-model="username" class="form-control">
+		 		</div>
+		    </div>
+		    <div class="row">
+		 		<div class="form-group col-xs-5 col-lg-4">
+		 			<button ng-click="issueCtrl.createIssue();" class="btn btn-info">Create Issue</button>
+		 		</div>
+			</div>
+		</form>
+	</div>
+</body>
+</html>
