@@ -4,6 +4,7 @@ gitApp.service('getUserRepoService',function($http,$q) {
 	var repo = this;
 	var descarr = [];
 	var userArr = [];
+	var repoArr = [];
 	repo.getUserRepo = function(name){
 		var deffer = $q.defer();
 
@@ -26,6 +27,12 @@ gitApp.service('getUserRepoService',function($http,$q) {
 	}
 	repo.getUserData = function(){
 		return userArr;
+	}
+	repo.setRepoData = function(repoData){
+		repoArr = repoData;
+	}
+	repo.getRepoData = function(){
+		return repoArr;
 	}
 	
 	return repo;

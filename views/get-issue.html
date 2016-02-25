@@ -1,30 +1,15 @@
 	<div class="row">
-		<div class="form-group col-xs-1">
-				<label for="code">Username</label>			
-		</div>
-		<div class="form-group col-xs-4">	
-			<input type="text" name="gname" id="gname" ng-model="getCtrl.username" ng-change="getCtrl.checkInfo()" class="form-control"/>
-		</div>
-		
+ 		<div class="form-group col-md-6">
+ 			<a href="#/list" class="btn btn-info">List Issues</a>
+ 			<a href="#/create" class="btn btn-info">Create Issue</a>
+ 		</div>
 	</div>
-	<div class="row">
-		<div class="form-group col-xs-1">
-				<label for="code">Password</label>			
-		</div>
-		<div class="form-group col-xs-4">	
-			<input type="password" name="gpswd" id="gpswd" ng-model="getCtrl.password" ng-change="getCtrl.checkInfo()" class="form-control"/>
-		</div>
-		<div class="form-group col-xs-1">	
-			<a href="" ng-click="getCtrl.getInfo();" ng-disabled = "getCtrl.getInfoDisable" class="btn btn-info">Get Info</a>
-		</div>
-	</div>
-
 	<div class="row">
 		<div class="form-group col-xs-1">
 			<label for="code">Repository</label>			
 		</div>
 		<div class="form-group col-xs-4">	
-			 <select class="form-control" ng-model="repoItem.name" ng-change='getCtrl.getIssue(repoItem.name)' ng-disabled="getCtrl.disableSel" ng-options="repoItem.name for repoItem in getCtrl.resData">
+			 <select class="form-control" ng-model="repoItem.name" ng-change='getCtrl.getIssue(repoItem.name)' ng-options="repoItem.name for repoItem in getCtrl.resData">
 	    </select>
 		</div>
 		
@@ -42,8 +27,8 @@
 		     	</tr>
 				</thead>
 	   			<tbody>
-	      			<tr ng-repeat="d in getCtrl.descriptions"><td>{{d[0]}}</td>
-	      				<td>{{d[1]}}</td>
+	      			<tr ng-repeat="d in getCtrl.descriptions"><td>{{d[1]}}</td>
+	      				<td>{{d[0]}}</td>
 	      				<td>{{d[2]}}</td>
 	      				<td><a href="#/edit/{{$index}}/{{repoItem.name.name}}" >Edit</a></td>
 	      			</tr>

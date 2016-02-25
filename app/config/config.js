@@ -2,6 +2,11 @@
 
 gitApp.config(function($routeProvider){
 	$routeProvider.
+		when("/",{
+			templateUrl: 'views/login.html',
+			controller: 'loginController',
+			controllerAs: 'loginCtrl'
+		}).
 		when("/list",{
 			templateUrl: 'views/get-issue.html',
 			controller: 'getIssueController',
@@ -18,4 +23,8 @@ gitApp.config(function($routeProvider){
 		controllerAs: 'editCtrl'
 
 	});
+});
+
+gitApp.run(function($templateCache) {
+	$templateCache.removeAll();
 });

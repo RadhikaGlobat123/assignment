@@ -4,16 +4,14 @@ gitApp.controller("getIssueController", ['$scope','$http','$location','$routePar
 	
 	var vm = this;
 	
-	
 	vm.username='';
 	vm.password='';
 	vm.resData=[];
 	vm.descriptions = [];
-	vm.disableSel = true;
 	vm.gitUser;
 	vm.userData = [];
 	vm.getInfoDisable = true;
-		
+	vm.resData = getUserRepoService.getRepoData();
 	vm.checkInfo = function(){
 		if(vm.username!="" && vm.password!=""){
 
@@ -22,23 +20,12 @@ gitApp.controller("getIssueController", ['$scope','$http','$location','$routePar
 			vm.getInfoDisable = true;
 		}
 	}
-	vm.getInfo = function(){
-
-		getUserRepoService.getUserRepo(vm.username).then(function(res){
-			vm.gitUser = res;
-			for(var i=0;i< vm.gitUser.length; i++){				
-				vm.resData.push({name:vm.gitUser[i].name,value:vm.gitUser[i].name});
-			}
-			
-		});
-		vm.disableSel = false;
-		vm.userData.push(vm.username,vm.password);
-		getUserRepoService.storeUserData(vm.userData);
-       }
-
+	
      vm.getIssue = function(sItem){
+     	vm.userData = getUserRepoService.getUserData();
+     	var username = vm.userData[0];
      	
-      	$http.get("https://api.github.com/repos/"+vm.username+"/"+sItem.name+"/issues").then(function(res) {
+     	$http.get("https://api.github.com/repos/"+username+"/"+sItem.name+"/issues").then(function(res) {
       		var issueData = res.data;	
       		
       		if(issueData.length>0){

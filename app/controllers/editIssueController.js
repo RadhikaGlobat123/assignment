@@ -4,6 +4,7 @@ gitApp.controller("editIssueController", ['$scope','$http','$location','$routePa
 	
 
 	var vm = this;
+	
 	vm.descriptions = getUserRepoService.getDescription();
 	
 	vm.repo = $routeParams.repo;
@@ -14,6 +15,7 @@ gitApp.controller("editIssueController", ['$scope','$http','$location','$routePa
 	var userData = getUserRepoService.getUserData();
 	
 	vm.updateIssue = function(){
+		
 	var issueData = JSON.stringify({title:vm.editissueTitle,body:vm.issueDesc});
   
    var encodeStr = btoa( userData[0] +":"+ userData[1] );
@@ -24,6 +26,8 @@ gitApp.controller("editIssueController", ['$scope','$http','$location','$routePa
           data: issueData,
           headers: {'Content-Type': 'application/json','Authorization': 'Basic '+encodeStr+"=" }
       }).then(function successCall(res){
+        console.log(res);
+        $location.path("/list")
     });
 	}
 

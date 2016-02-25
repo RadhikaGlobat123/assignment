@@ -31,6 +31,7 @@ gitApp.controller("createIssueCtrl", ['$scope','$http','getUserRepoService',func
           data: issueData,
           headers: {'Content-Type': 'application/json','Authorization': 'Basic '+encodeStr+"=" }
       }).then(function successCall(res){
+        console.log(res);
     });
 
   }
