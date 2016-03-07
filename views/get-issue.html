@@ -9,11 +9,19 @@
 			<label for="code">Repository</label>			
 		</div>
 		<div class="form-group col-xs-4">	
-			 <select class="form-control" ng-model="repoItem.name" ng-change='getCtrl.getIssue(repoItem.name)' ng-options="repoItem.name for repoItem in getCtrl.resData">
-	    </select>
+			<select class="form-control" ng-model="repoItem.name" ng-init = "getCtrl.selectetdRepo" ng-change='getCtrl.getIssue(repoItem.name)' ng-options="repoItem.name for repoItem in getCtrl.resData">	
+	    	</select>
 		</div>
-		
 	</div>
+	<div class="row">
+		<div class="form-group col-xs-1">
+			<label for="code">Search </label>			
+		</div>
+		<div class="form-group col-xs-2">	
+			<input type="text" ng-model="searchText">
+		</div>
+	</div>
+ 
  
 	<div class="row col-md-6">
 		<div class="form-group ">
@@ -22,16 +30,22 @@
 		        <tr>
 			        <th>Title</th>
 			        <th>Description</th>
-			        <th>Assignee</th>
+			        <th>Created On</th>
+			        <th>State</th>
 			        <th>Action</th>
 		     	</tr>
 				</thead>
 	   			<tbody>
-	      			<tr ng-repeat="d in getCtrl.descriptions"><td>{{d[1]}}</td>
-	      				<td>{{d[0]}}</td>
-	      				<td>{{d[2]}}</td>
-	      				<td><a href="#/edit/{{$index}}/{{repoItem.name.name}}" >Edit</a></td>
+	      			<tr ng-repeat="d in getCtrl.descriptions | filter:searchText"><td ng-bind="d[1]"></td>
+	      				<td ng-bind="d[4]"></td>
+	      				<td ng-bind="d[5] | date: 'shortDate' "></td>
+	      				<td ng-bind="d[6]"></td>
+	      				<td><a class="glyphicon glyphicon-pencil" href="#/edit/{{$index}}/{{repoItem.name.name}}" title="edit"></a>
+	      					<!-- <a href="" ng-click="getCtrl.deleteIssue($index,d[3],repoItem.name.name);" >Close</a> -->
+	      					<a class = "glyphicon glyphicon-remove" href="#/close/{{$index}}/{{repoItem.name.name}}" title="close"></a>
+	      				</td>
 	      			</tr>
+	      			<tr ng-show="getCtrl.showErrRow"><td>Issue Not Found</td></tr>
 	    		</tbody>
 			</table>
 		</div>

@@ -11,7 +11,7 @@ gitApp.service('getUserRepoService',function($http,$q) {
 		$http.get("https://api.github.com/users/"+name+"/repos").then(function suceessCall(response) {
 			deffer.resolve(response.data);
       	},function errorCall(errResponse){
-      		deffer.reject(errResponse);
+      		deffer.reject(errResponse.data);
       	});	
       	return deffer.promise;	
 	}
@@ -34,8 +34,5 @@ gitApp.service('getUserRepoService',function($http,$q) {
 	repo.getRepoData = function(){
 		return repoArr;
 	}
-	
-	return repo;
-
 });
 

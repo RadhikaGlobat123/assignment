@@ -4,15 +4,21 @@
    <script src="app/app.js"></script>
    <script src="app/js/jquery-1.12.0.min.js"></script>
    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
+   <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+   <script src="http://bootboxjs.com/bootbox.js"></script>
    <script src="app/js/bootstrap.min.js"></script>
    <script src="app/js/angular-route.js"></script>
+   <script src="app/js/jquery-ui.js"></script>
     <script src="app/config/config.js"></script>
    <script src="app/controllers/getIssueController.js"></script>
    <script src="app/controllers/createIssueController.js"></script>
    <script src="app/controllers/editIssueController.js"></script>
+   <script src="app/controllers/closeIssueController.js"></script>
    <script src="app/controllers/loginController.js"></script>
+
    <script src="app/services/getUserRepo.js"></script>
+   <link rel="stylesheet" href="css/style.css">
+   <link rel="stylesheet" href="css/jquery-ui.css">
    
    <title>Github API</title>
   
@@ -22,7 +28,7 @@
   	<div class="container" style="text-align:center;">
   		<div class="col-md-12">
     	<h1>Github Issues</h1>
-		<form role="form">
+		<form role="form" name="frm" novalidate>
 			<div class="row col-md-8 col-md-offset-2">
 			    <h3>Here is the place where you can create edit or list issues of Github</h3>
 		    </div>

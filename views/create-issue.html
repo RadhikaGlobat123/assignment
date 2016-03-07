@@ -5,62 +5,61 @@
  		</div>
 	</div>
 
-    <div class="row">
-		<div class="form-group col-xs-1">
-				<label for="code">Username</label>			
-		</div>
-		<div class="form-group col-xs-4">	
-			<input type="text" name="gname" id="gname" ng-model="createCtrl.gitUsername" class="form-control"/>
-		</div>
-	</div>
-	 <div class="row">
-		<div class="form-group col-xs-1">
-			<label for="code">Password</label>			
-		</div>
-		<div class="form-group col-xs-4">	
-			<input type="password" name="gname" id="gname" ng-model="createCtrl.gitPasssword" class="form-control">
-		</div>
-	</div>
-    
-    <div class="row">
- 		<div class="form-group col-xs-5 col-lg-4">
- 			<button ng-click="createCtrl.login();" class="btn btn-info">Get Repository</button>
- 		</div>
-	</div>
-
-	<!-- <div class="row">
- 		<div class="form-group col-xs-5 col-lg-4">
- 			<select class="form-control" ng-model="repoItem" ng-change='createCtrl.createIssue(repoItem)' ng-disabled="createCtrl.disableSel" ng-options="repoItem.name for repoItem in createCtrl.resData">
-	    </select>
- 		</div>
-	</div> -->
 	<div class="row">
 		<div class="form-group col-xs-1">
 			<label for="code">Repository</label>			
 		</div>
 		<div class="form-group col-xs-4">	
-			<select class="form-control" ng-model="repoItem" ng-disabled="createCtrl.disableSel" ng-options="repoItem.name for repoItem in createCtrl.resData">
+			<select class="form-control" ng-model="repoItem" ng-options="repoItem.name for repoItem in createCtrl.resData" required>
 	   		 </select>
+	   		 <span style="color:red" ng-show="createCtrl.repoErrMsg">Repositry Required</span>
 		</div>
 	</div>
-	<div class="row"  ng-hide='createCtrl.disableSel'>
+	<div class="row">
+		<div class="form-group col-xs-1">
+			<label for="code">Password</label>			
+		</div>
+		<div class="form-group col-xs-4">	
+			<input type="password" name="password" id="password" ng-model="createCtrl.password" class="form-control" required>
+			<span style="color:red" ng-show="createCtrl.pswdErrMsg">password is Required</span>
+			<span style="color:red" ng-show="createCtrl.wrongPwdMsg">Wrong password</span>
+		</div>
+	</div>
+	<div class="row">
 		<div class="form-group col-xs-1">
 			<label for="code">Title</label>			
 		</div>
 		<div class="form-group col-xs-4">	
-			<input type="text" name="issueTitle" id="issueTitle" ng-model="createCtrl.issueTitle" class="form-control">
+			<input type="text" name="issueTitle" id="issueTitle" ng-model="createCtrl.issueTitle" class="form-control" required>
+			<span style="color:red" ng-show="createCtrl.titleErrMsg">Title is Required</span>
 		</div>
 	</div>
-	<div class="row" ng-hide='createCtrl.disableSel'>
+	<div class="row">
 		<div class="form-group col-xs-1">
 			<label for="code">Description</label>			
 		</div>
 		<div class="form-group col-xs-4">	
-			<input type="text" name="desc" id="desc" ng-model="createCtrl.issueDesc" class="form-control">
+			<input type="text" name="desc" id="desc" ng-model="createCtrl.issueDesc" class="form-control" required>
+			<span style="color:red" ng-show="createCtrl.descErrMsg">Description is Required</span>
+		</div>
+
+	</div>
+	<div class="row" >
+		<div class="form-group col-xs-1">
+			<label for="code">Created on</label>			
+		</div>
+		<div class="form-group col-xs-4">	
+			<input type="text" name="createDate" id="createDate" ng-model="createCtrl.createDate" class="form-control" required>
+			<span style="color:red" ng-show="createCtrl.dateErrMsg">Create Date is  Required</span>
 		</div>
 	</div>
 	<div class="row" ng-hide='createCtrl.disableSel'>
 		<div class="form-group col-xs-5 col-lg-4">
-			<button ng-click='createCtrl.createIssue(repoItem.value,createCtrl.issueTitle,createCtrl.issueDesc)'  class="btn btn-info">Submit</button>
+			<button ng-click='createCtrl.createIssue(frm,repoItem.value)' class="btn btn-info">Submit</button>
+		</div>
+	</div>
+	<div class="row" ng-show='createCtrl.successMsg'>
+		<div class="form-group col-xs-5 col-lg-4">
+			<span style="color:green" >Issue is created successfully.</span>
 		</div>
 	</div>

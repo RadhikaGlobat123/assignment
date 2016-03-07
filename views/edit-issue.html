@@ -1,3 +1,15 @@
+<div class="row">
+	<div class="form-group col-xs-1">
+			<label for="code">Password</label>	
+	</div>
+	<div class="form-group col-xs-4">	
+		<input type="password" name="epswd" id="epswd" ng-model="editCtrl.password" class="form-control" required/>
+	</div>
+	<div class="form-group col-xs-2">	
+		<span style="color:red" ng-show="editCtrl.pwdErr">password required</span>
+		<span style="color:red" ng-show="editCtrl.wrongPwd">Wrong Password</span>
+	</div>
+</div>
 <div class="row" >
 	<div class="form-group col-xs-1">
 		<label for="code">Title</label>			
@@ -14,6 +26,14 @@
 		<input type="text" name="issueDesc" id="issueDesc" ng-model="editCtrl.issueDesc" class="form-control"/>
 	</div>
 </div>
+<div class="row" >
+	<div class="form-group col-xs-1">
+		<label for="code">Created On</label>			
+	</div>
+	<div class="form-group col-xs-4">	
+		<input type="text" name="issueCreateDate" id="issueCreateDate" ng-model="editCtrl.issueCreateDate" class="form-control" disabled/>
+	</div>
+</div>
  <div class="row" >
 	<div class="form-group col-xs-1">
 		<label for="code">Assignee</label>			
@@ -23,8 +43,25 @@
 	</div>
 </div>
 <div class="row" >
+	<div class="form-group col-xs-1">
+		<label for="code">State</label>			
+	</div>
+	<!-- <div class="form-group col-xs-2" ng-init="editCtrl.state='open'">	
+		<input type="radio" name="state" ng-model="editCtrl.state1"  value="open" /> Open
+		<input type="radio" name="state" ng-model="editCtrl.state1"  value="close"> Close		
+	</div> -->
+	 <div class="form-group col-xs-1" ng-repeat="state in editCtrl.states">
+        <input type="radio" ng-model="editCtrl.selState" ng-value="state" name="issuestate" />{{state.issueState}}    
+    </div>
+</div>
+<div class="row" >
 	<div class="form-group col-xs-5 col-lg-4">
-		<button ng-click='editCtrl.updateIssue()' class="btn btn-info">Submit</button>
+		<button ng-click='editCtrl.updateIssue(frm)' class="btn btn-info">Submit</button>
+	</div>
+</div>
+<div class="row" ng-show="editCtrl.successMsg">
+	<div class="form-group col-xs-5 col-lg-4">
+		<span style="color:green">Issue edited successfully</span>
 	</div>
 </div>
  

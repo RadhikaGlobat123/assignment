@@ -1,0 +1,58 @@
+<div class="row">
+		<div class="form-group col-xs-1">
+				<label for="code">Password</label>	
+		</div>
+		<div class="form-group col-xs-4">	
+			<input type="password" name="epswd" id="epswd" ng-model="closeCtrl.password" class="form-control" required/>
+		</div>
+		<div class="form-group col-xs-2">	
+			<span style="color:red" ng-show="closeCtrl.closepswdErrMsg">Password is required</span>
+			<span style="color:red" ng-show="closeCtrl.wrongPwdMsg">Wrong Password</span>
+		</div>
+	</div>
+<div class="row" >
+	<div class="form-group col-xs-1">
+		<label for="code">Title</label>			
+	</div>
+	<div class="form-group col-xs-4">	
+		<input type="text" name="issueTitle" id="issueTitle" ng-model="closeCtrl.issueTitle" class="form-control" disabled/>
+	</div>
+</div>
+<div class="row" >
+	<div class="form-group col-xs-1">
+		<label for="code">Description</label>			
+	</div>
+	<div class="form-group col-xs-4">	
+		<input type="text" name="issueDesc" id="issueDesc" ng-model="closeCtrl.issueDesc" class="form-control"/>
+		<span ng-show="closeCtrl.descErrMsg">Description required</span>
+	</div>
+</div>
+<div class="row" >
+	<div class="form-group col-xs-1">
+		<label for="code">Created On</label>			
+	</div>
+	<div class="form-group col-xs-4">	
+		<input type="text" name="issueCreateDate" id="issueCreateDate" ng-model="closeCtrl.issueCreateDate" class="form-control" disabled/>
+	</div>
+</div>
+ <div class="row" >
+	<div class="form-group col-xs-1">
+		<label for="code">Assignee</label>			
+	</div>
+	<div class="form-group col-xs-4">	
+		<input type="text" name="assignee" id="assignee" ng-model="closeCtrl.assignee" class="form-control"/>
+	</div>
+</div>
+<div class="row" >
+	<div class="form-group col-xs-5 col-lg-4">
+		<button ng-click='closeCtrl.closeIssue(frm)' class="btn btn-info">Submit</button>
+	</div>
+</div>
+<div class="row" ng-show="closeCtrl.closeSuccessMsg">
+	<div class="form-group col-xs-5 col-lg-4">
+		<span style="color:green">Issue closed successfully</span>
+	</div>
+</div>
+ 
+
+
