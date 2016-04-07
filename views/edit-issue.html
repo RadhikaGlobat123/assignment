@@ -1,69 +1,90 @@
+<div class="row"></div>
 <div class="row">
-	<div class="form-group col-xs-1">
-			<label for="code">Password</label>	
-	</div>
-	<div class="form-group col-xs-4">	
-		<input type="password" name="epswd" id="epswd" ng-model="editCtrl.password" class="form-control" required/>
-	</div>
-	<div class="form-group col-xs-2">	
-		<span style="color:red" ng-show="editCtrl.pwdErr">password required</span>
-		<span style="color:red" ng-show="editCtrl.wrongPwd">Wrong Password</span>
+<div class="container-fluid text-center">    
+	<div class="panel panel-primary">
+		<div class="panel-heading text-left">
+			Edit Issue
+			<span class="pull-right"><a href="" ng-click="editCtrl.logout()" style="color:white"><span class="glyphicon glyphicon-off"></span> Logout</a></span>
+		</div>
+		<div class="panel-body">
+		    <div class="col-sm-8 col-sm-offset-3 text-left"> 
+		      	<div class="row" >
+					<div class="form-group col-xs-2">
+						<label for="code">Title</label>			
+					</div>
+					<div class="form-group col-xs-6">	
+						<input type="text" name="editissueTitle" id="editissueTitle" ng-model="editCtrl.editissueTitle" class="form-control" required/>
+						<span style="color:red" ng-show="editCtrl.editSubmit && frm.editissueTitle.$invalid">
+							Title is required.
+						</span>
+					</div>
+				</div>
+				<div class="row" >
+					<div class="form-group col-xs-2">
+						<label for="code">Description</label>			
+					</div>
+					<div class="form-group col-xs-6">	
+						<input type="text" name="issueDesc" id="issueDesc" ng-model="editCtrl.issueDesc" class="form-control"/>
+						<span style="color:red" ng-show="editCtrl.editSubmit && frm.issueDesc.$invalid">
+							Description is required.
+						</span>
+					</div>
+				</div>
+				<div class="row" >
+					<div class="form-group col-xs-2">
+						<label for="code">Created On</label>			
+					</div>
+					<div class="form-group col-xs-6">	
+						<input type="text" name="issueCreateDate" id="issueCreateDate" ng-model="editCtrl.issueCreateDate" class="form-control" disabled/>
+					</div>
+				</div>
+				<div class="row" >
+					<div class="form-group col-xs-2">
+						<label for="code">State</label>			
+					</div>
+					 <div class="form-group col-xs-1" ng-repeat="state in editCtrl.states">
+				        <input type="radio"  ng-model="editCtrl.selState" ng-value="state.issueState" name="issuestate"/>{{state.issueState}} 
+				    </div>
+				</div>
+				<div class="row">
+					<div class="form-group col-xs-2" >
+						<label for="code">Comments</label>	
+					</div>
+					<div class="form-group col-xs-2" ng-hide="editCtrl.noComment" style="width: 500px; height: 65px; overflow:auto;">
+						<ol class="list-group"><li class="list-group-item" ng-repeat="comment in editCtrl.commetsArr">{{comment.body}}</li></ol>
+					</div>
+					<span class="form-group col-xs-2" ng-show="editCtrl.noComment">No Comments</span>
+				</div>
+				<div class="row">
+					<div class="form-group col-xs-2">
+						<label for="code">Add Comment</label>	
+					</div>
+					<input class= "form-group col-xs-1" type="checkbox" ng-model="editCtrl.check" ng-true-value="'yes'" ng-false-value="'no'">
+				</div>
+				<div class="row" ng-if="editCtrl.check == 'yes'">
+					<div class="form-group col-xs-2">
+						<label for="code">Comment</label>	
+					</div>
+					<div class="form-group col-xs-6" >	
+						<input type="text" name="comment" id="comment" ng-model="editCtrl.comment" class="form-control" required/>
+						<span style="color:red" ng-show="editCtrl.commentErrMsg">comment is required</span>
+					</div>
+				</div>
+				<div class="row" >
+					<div class="form-group ">
+						<div class="form-group col-xs-5 col-md-2 col-md-offset-1">
+							<button ng-click='editCtrl.updateIssue(frm)' class="btn btn-primary">Submit</button>
+						</div>
+						<div class="form-group col-xs-5 col-md-1">
+							<button ng-click='editCtrl.cancelIssue()' class="btn btn-primary">Cancel</button>
+						</div>
+					</div>
+				</div>
+				
+				<toaster-container toaster-options="{'time-out': 3000, 'close-button':true, 'animation-class': 'toast-center'}"></toaster-container>
+		    </div>
+		</div>
 	</div>
 </div>
-<div class="row" >
-	<div class="form-group col-xs-1">
-		<label for="code">Title</label>			
-	</div>
-	<div class="form-group col-xs-4">	
-		<input type="text" name="editissueTitle" id="editissueTitle" ng-model="editCtrl.editissueTitle" class="form-control"/>
-	</div>
-</div>
-<div class="row" >
-	<div class="form-group col-xs-1">
-		<label for="code">Description</label>			
-	</div>
-	<div class="form-group col-xs-4">	
-		<input type="text" name="issueDesc" id="issueDesc" ng-model="editCtrl.issueDesc" class="form-control"/>
-	</div>
-</div>
-<div class="row" >
-	<div class="form-group col-xs-1">
-		<label for="code">Created On</label>			
-	</div>
-	<div class="form-group col-xs-4">	
-		<input type="text" name="issueCreateDate" id="issueCreateDate" ng-model="editCtrl.issueCreateDate" class="form-control" disabled/>
-	</div>
-</div>
- <div class="row" >
-	<div class="form-group col-xs-1">
-		<label for="code">Assignee</label>			
-	</div>
-	<div class="form-group col-xs-4">	
-		<input type="text" name="assignee" id="assignee" ng-model="editCtrl.assignee" class="form-control"/>
-	</div>
-</div>
-<div class="row" >
-	<div class="form-group col-xs-1">
-		<label for="code">State</label>			
-	</div>
-	<!-- <div class="form-group col-xs-2" ng-init="editCtrl.state='open'">	
-		<input type="radio" name="state" ng-model="editCtrl.state1"  value="open" /> Open
-		<input type="radio" name="state" ng-model="editCtrl.state1"  value="close"> Close		
-	</div> -->
-	 <div class="form-group col-xs-1" ng-repeat="state in editCtrl.states">
-        <input type="radio" ng-model="editCtrl.selState" ng-value="state" name="issuestate" />{{state.issueState}}    
-    </div>
-</div>
-<div class="row" >
-	<div class="form-group col-xs-5 col-lg-4">
-		<button ng-click='editCtrl.updateIssue(frm)' class="btn btn-info">Submit</button>
-	</div>
-</div>
-<div class="row" ng-show="editCtrl.successMsg">
-	<div class="form-group col-xs-5 col-lg-4">
-		<span style="color:green">Issue edited successfully</span>
-	</div>
-</div>
- 
 
-
+</div>

@@ -1,0 +1,9 @@
+.issue-table {	
+	max-height: 300px;
+	overflow-y: auto;
+	display: block;
+}
+.issue-table thead th{
+	width: 500px;
+}
+

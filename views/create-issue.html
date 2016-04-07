@@ -1,65 +1,92 @@
-    <div class="row">
- 		<div class="form-group col-md-6">
- 			<a href="#/list" class="btn btn-info">List Issues</a>
- 			<a href="#/create" class="btn btn-info">Create Issue</a>
- 		</div>
-	</div>
+<div class='row'>
+<div class='form-group col-md-12'>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand">Github</a>
+    </div>
+    <ul class="nav navbar-nav" ng-controller="TabController as tab">
+     
+      <li ng-class="{active:tab.isSet(1)}"> <a  href='#/list' ng-click="tab.setTab(1)">List Issues</a></li>
+      <li ng-class="{active:tab.isSet(2)}" ><a href='#/create'  ng-click="tab.setTab(2)">Create Issue</a></li> 
+     
+    </ul>
+    <ul class="nav navbar-nav navbar-right">     
+      <li><a href="" ng-click="createCtrl.logout()"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
+    </ul>
+  </div>
+</nav></div>
+</div>
 
-	<div class="row">
-		<div class="form-group col-xs-1">
-			<label for="code">Repository</label>			
-		</div>
-		<div class="form-group col-xs-4">	
-			<select class="form-control" ng-model="repoItem" ng-options="repoItem.name for repoItem in createCtrl.resData" required>
-	   		 </select>
-	   		 <span style="color:red" ng-show="createCtrl.repoErrMsg">Repositry Required</span>
-		</div>
-	</div>
-	<div class="row">
-		<div class="form-group col-xs-1">
-			<label for="code">Password</label>			
-		</div>
-		<div class="form-group col-xs-4">	
-			<input type="password" name="password" id="password" ng-model="createCtrl.password" class="form-control" required>
-			<span style="color:red" ng-show="createCtrl.pswdErrMsg">password is Required</span>
-			<span style="color:red" ng-show="createCtrl.wrongPwdMsg">Wrong password</span>
-		</div>
-	</div>
-	<div class="row">
-		<div class="form-group col-xs-1">
-			<label for="code">Title</label>			
-		</div>
-		<div class="form-group col-xs-4">	
-			<input type="text" name="issueTitle" id="issueTitle" ng-model="createCtrl.issueTitle" class="form-control" required>
-			<span style="color:red" ng-show="createCtrl.titleErrMsg">Title is Required</span>
-		</div>
-	</div>
-	<div class="row">
-		<div class="form-group col-xs-1">
-			<label for="code">Description</label>			
-		</div>
-		<div class="form-group col-xs-4">	
-			<input type="text" name="desc" id="desc" ng-model="createCtrl.issueDesc" class="form-control" required>
-			<span style="color:red" ng-show="createCtrl.descErrMsg">Description is Required</span>
-		</div>
+<div class="container-fluid text-center" style="margin-top: -36px;">    
+	<div class="panel panel-primary">
+		<div class="panel-body">
+		    <div class="col-sm-8 col-sm-offset-3 text-left"> 
+		      	<div class="row">
+					<div class="form-group col-xs-2">
+						<label for="code">Title</label>			
+					</div>
+					<div class="form-group col-xs-6">	
+						<input type="text" name="issueTitle" id="issueTitle" ng-model="createCtrl.issueTitle" class="form-control" required>
+						<span style="color:white" ng-show="createCtrl.createSubmit && frm.issueTitle.$invalid">
+							Title is required.
+						</span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group col-xs-2">
+						<label for="code">Description</label>			
+					</div>
+					<div class="form-group col-xs-6">	
+						<input type="text" name="desc" id="desc" ng-model="createCtrl.issueDesc" class="form-control" required>
+						<span style="color:white" ng-show="createCtrl.createSubmit && frm.desc.$invalid">
+							Description is required.
+						</span>
+					</div>
+				</div>
+				<div class="row" >
+					<div class="form-group col-xs-2">
+						<label for="code">Created on</label>			
+					</div>
+					<div class="form-group col-xs-6">
+						<!-- <input type="text" name="createDate" id="createDate" ng-model="createCtrl.createDate" class="form-control"  readonly> -->
+						<!-- <span style="color:red" ng-show="createCtrl.createSubmit && frm.createDate.$invalid">
+							create Date is required.
+						</span> -->
+					<datepicker
+				      date-format="dd-MM-yyyy"
+				      date-min-limit= "{{createCtrl.minDate}}"
+				      button-prev='<i class="fa fa-arrow-circle-left"></i>'
+				      button-next='<i class="fa fa-arrow-circle-right"></i>'>
+				      <input ng-model="createCtrl.createDate" name="createDate" type="text" class=" form-control" required/>
+				    </datepicker>
+				   	<span style="color:white" ng-show="createCtrl.createSubmit && frm.createDate.$invalid">
+							create Date is required.
+						</span> 
+					</div>
+				</div>
+				<div class="row" >
+					<div class="form-group ">
+						
+							<button ng-click='createCtrl.createIssue(frm)' class="btn btn-primary">Submit</button>
+						
+							<button ng-click='createCtrl.cancelIssue()' class="btn btn-primary">Cancel</button>
+						
+					</div>
+				</div>
 
-	</div>
-	<div class="row" >
-		<div class="form-group col-xs-1">
-			<label for="code">Created on</label>			
-		</div>
-		<div class="form-group col-xs-4">	
-			<input type="text" name="createDate" id="createDate" ng-model="createCtrl.createDate" class="form-control" required>
-			<span style="color:red" ng-show="createCtrl.dateErrMsg">Create Date is  Required</span>
+		<toaster-container toaster-options="{'time-out': 3000, 'close-button':true, 'animation-class': 'toast-center'}"></toaster-container>
+		    </div>
 		</div>
 	</div>
-	<div class="row" ng-hide='createCtrl.disableSel'>
-		<div class="form-group col-xs-5 col-lg-4">
-			<button ng-click='createCtrl.createIssue(frm,repoItem.value)' class="btn btn-info">Submit</button>
-		</div>
+</div>
+
+
+<!-- <div class="row" ng-show='createCtrl.wrongPwdMsg'>
+	<span style="color:red" >Wrong Password.Please Logout and try agaim</span>
+</div>
+<div class="row" ng-show='createCtrl.successMsg'>
+	<div class="form-group col-xs-5 col-lg-4">
+		<span style="color:green" >Issue is created successfully.</span>
 	</div>
-	<div class="row" ng-show='createCtrl.successMsg'>
-		<div class="form-group col-xs-5 col-lg-4">
-			<span style="color:green" >Issue is created successfully.</span>
-		</div>
-	</div>
+</div> -->

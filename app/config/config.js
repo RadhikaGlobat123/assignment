@@ -1,6 +1,6 @@
  var gitApp = angular.module("gitApp");
 
-gitApp.config(function($routeProvider){
+angular.module("gitApp").config(function($routeProvider){
 	$routeProvider.
 		when("/",{
 			templateUrl: 'views/login.html',
@@ -10,12 +10,14 @@ gitApp.config(function($routeProvider){
 		when("/list",{
 			templateUrl: 'views/get-issue.html',
 			controller: 'getIssueController',
-			controllerAs: 'getCtrl'
+			controllerAs: 'getCtrl',
+			activePage: 'list'
 		})
 		.when("/create",{
 			templateUrl: 'views/create-issue.html',
 			controller: 'createIssueCtrl',
-			controllerAs: 'createCtrl'
+			controllerAs: 'createCtrl',
+			activePage: 'create'
 
 		}).when("/edit/:id/:repo",{
 			templateUrl: 'views/edit-issue.html',
@@ -26,9 +28,15 @@ gitApp.config(function($routeProvider){
 			templateUrl: 'views/close-issue.html',
 			controller: 'closeIssueController',
 			controllerAs: 'closeCtrl'
+		}).when("/view/:id/:repo",{
+			templateUrl: 'views/view-issue.html',
+			controller: 'viewIssueController',
+			controllerAs: 'viewCtrl'
+		}).otherwise({
+			redirectTo: '/'
 		});
+
+
 });
 
-gitApp.run(function($templateCache) {
-	$templateCache.removeAll();
-});
+angular.module("gitApp").run(['$route', function($route) { $route.reload(); }]);

@@ -1,43 +1,43 @@
 <html ng-app="gitApp">
 <head>
-   <script src="app/js/angular.min.js"></script>
-   <script src="app/app.js"></script>
-   <script src="app/js/jquery-1.12.0.min.js"></script>
-   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-   <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-   <script src="http://bootboxjs.com/bootbox.js"></script>
-   <script src="app/js/bootstrap.min.js"></script>
-   <script src="app/js/angular-route.js"></script>
-   <script src="app/js/jquery-ui.js"></script>
-    <script src="app/config/config.js"></script>
-   <script src="app/controllers/getIssueController.js"></script>
-   <script src="app/controllers/createIssueController.js"></script>
-   <script src="app/controllers/editIssueController.js"></script>
-   <script src="app/controllers/closeIssueController.js"></script>
-   <script src="app/controllers/loginController.js"></script>
+  <script src="app/scripts/lib/angular.min.js"></script>
+  <script src="app/scripts/lib/toaster.js"></script>
+  <link rel="stylesheet" href="views/css/toaster.css">
+  <script src="app/app.js"></script>
+  <script src="app/scripts/lib/jquery-1.12.0.min.js"></script>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  <script src="http://bootboxjs.com/bootbox.js"></script>
+  <script src="app/scripts/lib/bootstrap.min.js"></script>
+  <script src="app/scripts/lib/angular-route.js"></script>
+  <script src="app/scripts/lib/jquery-ui.js"></script>
+  <script src="app/scripts/lib/ngprogress.js"></script>
+  <script src="app/scripts/lib/toaster.js"></script>
+  <script src="app/scripts/lib/underscore-min.js"></script>
+  <script src="app/scripts/lib/angular-datepicker.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.0/ui-bootstrap-tpls.js">
+  </script>
+  <script src="http://code.angularjs.org/1.3.3/angular-animate.min.js" ></script>
+  <script src="app/config/config.js"></script>
+   <script src="app/scripts/controllers/tabController.js"></script>
+  <script src="app/scripts/controllers/getIssueController.js"></script>
+  <script src="app/scripts/controllers/createIssueController.js"></script>
+  <script src="app/scripts/controllers/editIssueController.js"></script>
+  <script src="app/scripts/controllers/closeIssueController.js"></script>
+  <script src="app/scripts/controllers/viewIssueController.js"></script>
+  <script src="app/scripts/controllers/loginController.js"></script>
 
-   <script src="app/services/getUserRepo.js"></script>
-   <link rel="stylesheet" href="css/style.css">
-   <link rel="stylesheet" href="css/jquery-ui.css">
-   
-   <title>Github API</title>
+  <script src="app/scripts/directives/directive.js"></script>
+  <script src="app/scripts/services/getUserRepo.js"></script>
+  <script src="app/scripts/factories/getUserData.js"></script>
+  <link rel="stylesheet" href="views/css/style.css">
+  <link rel="stylesheet" href="views/css/jquery-ui.css">
+  <link rel="stylesheet" href="views/css/ngProgress.css">
+   <link rel="stylesheet" href="views/css/angular-datepicker.min.css">
   
 </head>
 
-<body>   
-  	<div class="container" style="text-align:center;">
-  		<div class="col-md-12">
-    	<h1>Github Issues</h1>
-		<form role="form" name="frm" novalidate>
-			<div class="row col-md-8 col-md-offset-2">
-			    <h3>Here is the place where you can create edit or list issues of Github</h3>
-		    </div>
-		    
-			<div class="row col-md-12 col-md-offset-3">
-				<div ng-view></div>
-			</div>
-		</form>
-		</div>
-	</div>
+<body ng-include="'views/issue.html'">   
+
 </body>
 </html>

@@ -1,0 +1,26 @@
+<table class='table table-bordered issue-table'>
+	<thead>
+		<tr>
+			<th>Title</th>
+			<th>Description</th>
+			<th>Created On</th>
+			<th>State</th>
+			<th>Action</th>
+		</tr>
+		
+		<tr ng-repeat="issue in vm.issueData | filter:searchText">
+			<td ng-bind="issue[1]"></td>
+			<td ng-bind="issue[4]"></td>
+			<td ng-bind="issue[5] | date: 'shortDate' "></td>
+			<td ng-bind="issue[6]"></td>
+			<td>
+				<a class = "glyphicon glyphicon-eye-open" ng-click="vm.editData($index,vm.repoItem);" title="view"></a>
+
+				<a class="glyphicon glyphicon-pencil" href="#/edit/{{$index}}/{{repoItem.name.name}}" title="edit"></a>
+				<!-- <a href="" ng-click="getCtrl.deleteIssue($index,d[3],repoItem.name.name);" >Close</a> -->
+				<a class = "glyphicon glyphicon-remove" href="#/close/{{$index}}/{{repoItem.name.name}}" title="close"></a>
+			</td>
+	    </tr>
+	    <tr ng-show="vm.showNoIssue"><td>Issue Not Found</td></tr>
+	</thead>
+</table>

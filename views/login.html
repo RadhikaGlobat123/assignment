@@ -1,19 +1,48 @@
-	<div class="row">
-		<div class="form-group col-xs-1">
-			<label for="code">Username</label>			
+<div class="container-fluid text-center"> 
+	<div class="row col-md-8 col-md-offset-2">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				 Login
+			</div>
+			<div class="panel-body">
+			    <div class="row">
+					<div class="form-group col-xs-2  col-xs-offset-2">
+						<label for="code">Username</label>			
+					</div>
+					<div class="form-group col-xs-6">	
+						<input type="text" name="gname" id="gname"  ng-model="loginCtrl.username" ng-change="loginCtrl.checkInfo()" class="form-control" required/>
+						<!-- <span ng-show="loginCtrl.noUserMsg" style="color:red">Username is Required</span> -->
+						<span ng-show="frm.gname.$touched && frm.gname.$error.required" style="color:red">Username is Required</span>
+						<span ng-show="loginCtrl.userErrMsg" style="color:red">User Not found Please try again</span>
+						<span ng-show="loginCtrl.noRepoMsg" style="color:red">Repository not found for this user</span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group col-xs-2  col-xs-offset-2">
+						<label for="code">Password</label>	
+					</div>
+					<div class="form-group col-xs-6">	
+						<input type="password" name="pswd" id="pswd" ng-model="loginCtrl.password" class="form-control" required/>
+					</div>
+					<div class="form-group col-xs-2">	
+						<span ng-show="frm.pswd.$touched && frm.pswd.$error.required" style="color:red">Password is Required</span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group col-xs-2  col-xs-offset-2">
+						<label for="code">Repository</label>			
+					</div>
+					<div class="form-group col-xs-6" >	
+						<select class="form-control" ng-disabled="loginCtrl.showRepo" ng-model="repoItem.name" ng-init = "loginCtrl.selectetdRepo" ng-change='loginCtrl.getIssue(repoItem.name)' ng-options="repoItem.name for repoItem in loginCtrl.resData">	
+				    	</select>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group col-xs-8 col-xs-offset-2">	
+						<button href="" ng-click="loginCtrl.getInfo(frm);" class="btn btn-primary" ng-disabled="frm.$invalid">Get Repository</button>
+					</div>
+				</div>
+			</div>
 		</div>
-		<div class="form-group col-xs-4">	
-			<input type="text" name="gname" id="gname"  ng-model="loginCtrl.username" ng-change="loginCtrl.checkInfo()" class="form-control" required/>
-			<!-- <span ng-show="loginCtrl.noUserMsg" style="color:red">Username is Required</span> -->
-			<span ng-show="frm.gname.$touched && frm.gname.$error.required" style="color:red">Username is Required</span>
-			<span ng-show="loginCtrl.userErrMsg" style="color:red">User Not found Please try again</span>
-			<span ng-show="loginCtrl.noRepoMsg" style="color:red">Repository not found for this user</span>
-		</div>
-		
 	</div>
-	<div class="row">
-		<div class="form-group col-xs-6">	
-			<a href="" ng-click="loginCtrl.getInfo(frm);"  class="btn btn-info">Get Info</a>
-		</div>
-	</div>
-
+</div>
