@@ -1,15 +1,38 @@
 var gitApp = angular.module("gitApp");
 
-/*gitApp.directive("tabs",[function(){
-	return {
-		restrict: "E",
-		template: "<div class='row'><div class='form-group col-md-6'><a href='#/list' class='btn btn-info'>List Issues</a><a href='#/create' class='btn btn-info'>Create Issue</a></div></div>"
-	}
-}]);*/
+gitApp.directive("clickToEdit", function () {
+    var editorTemplate =  '<div>'+
+    '<span ng-show="!view.editorEnabled" ng-click="edit()" ng-bind="val"></span>'+
+    '<input type="{{view.editableType}}" ng-show="view.editorEnabled" ng-model="view.editableValue"  >'+
+    '<button ng-show="view.editorEnabled" ng-click="save()" class="glyphicon glyphicon-ok"></button>'+
+    '<button ng-show="view.editorEnabled" ng-click="cancel()" class="glyphicon glyphicon-remove"></button>'
+    '</div>';
 
-gitApp.directive("inlineEdit",[function(){
-	return{
-		restrict:"E",
-		template:"<div>dfs</div>"
-	}
-}]);
+    return {
+        restrict: "E",
+        replace: true,
+        template: editorTemplate,
+        scope: {
+            val: "=",
+            type: "@"    
+        },
+          link: function ( scope, element, attrs ) {
+          	scope.view = {
+               editableValue: scope.val,
+               editableType : scope.type,
+               editorEnabled: false
+            };
+    		scope.edit = function () {
+              scope.view.editorEnabled = true;
+            };
+            scope.save = function () { 
+	            scope.val = scope.view.editableValue;
+	            scope.view.editorEnabled = false;
+            };
+            scope.cancel = function () { 
+	            scope.view.editorEnabled = false;
+            };
+    	}  
+    };
+});
+

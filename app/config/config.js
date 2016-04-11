@@ -32,6 +32,10 @@ angular.module("gitApp").config(function($routeProvider){
 			templateUrl: 'views/view-issue.html',
 			controller: 'viewIssueController',
 			controllerAs: 'viewCtrl'
+		}).when("/dashboard",{
+			templateUrl: 'views/dashboard.html',
+			controller: 'dashboardController',
+			controllerAs: 'dashCtrl'
 		}).otherwise({
 			redirectTo: '/'
 		});

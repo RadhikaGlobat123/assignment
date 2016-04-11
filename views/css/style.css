@@ -6,4 +6,6 @@
 .issue-table thead th{
 	width: 500px;
 }
-
+.edit-in-place input {
+  display: none;
+}

@@ -1,15 +1,16 @@
-
+(function(){
   var gitApp = angular.module("gitApp");
 
-angular.module("gitApp").controller("TabController", ['$scope','$location',function($scope,$location){
+gitApp.controller("TabController", ['$scope','$location',function($scope,$location){
    
-    if($location.$$path=="/list"){
+    if($location.$$path=="/dashboard"){
       this.tab = 1;
-    }else if($location.$$path=="/create"){
+    }else if($location.$$path=="/list"){
       this.tab = 2;
+    }else if($location.$$path=="/create"){
+      this.tab = 3;
     }
     this.setTab = function (tabId) {
-      console.log(tabId);
       this.tab = tabId;
     };
     this.isSet = function (tabId) {
@@ -17,3 +18,4 @@ angular.module("gitApp").controller("TabController", ['$scope','$location',funct
     };
   
 }]);
+})();

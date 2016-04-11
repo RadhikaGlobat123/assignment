@@ -1,42 +1,42 @@
 <div class="row" ></div>
 <div class="row">
-<div class="container-fluid text-center">    
-	<div class="panel panel-primary">
-		<div class="panel-heading text-left">
-			view Issue
-			<span class="pull-right">
-			<a href="" ng-click='closeCtrl.logout()' style="color: white;"><span class="glyphicon glyphicon-off"></span> Logout</a>
-		</span>
-		</div>
-		<div class="panel-body">
-		    <div class="col-sm-8 col-sm-offset-3 text-left"> 
-		     	<div class="row" >
-					<div class="form-group col-xs-2">
-						<label for="code">Title</label>			
+	<div class="container-fluid text-center">    
+		<div class="panel panel-primary">
+			<div class="panel-heading text-left">
+				view Issue
+				<span class="pull-right">
+				<a href="" ng-click='closeCtrl.logout()' style="color: white;"><span class="glyphicon glyphicon-off"></span> Logout</a>
+			</span>
+			</div>
+			<div class="panel-body">
+			    <div class="col-sm-8 col-sm-offset-3 text-left"> 
+			     	<div class="row" >
+						<div class="form-group col-xs-2">
+							<label for="code">Title</label>			
+						</div>
+						<div class="form-group col-xs-6">	
+							<input type="text" name="issueTitle" id="issueTitle" ng-model="closeCtrl.issueTitle" class="form-control" disabled/>
+						</div>
 					</div>
-					<div class="form-group col-xs-6">	
-						<input type="text" name="issueTitle" id="issueTitle" ng-model="closeCtrl.issueTitle" class="form-control" disabled/>
+					<div class="row" >
+						<div class="form-group col-xs-2">
+							<label for="code">Description</label>			
+						</div>
+						<div class="form-group col-xs-6">	
+							<input type="text" name="issueDesc" id="issueDesc" ng-model="closeCtrl.issueDesc" class="form-control"/>
+							<span ng-show="closeCtrl.descErrMsg">Description required</span>
+						</div>
 					</div>
-				</div>
-				<div class="row" >
-					<div class="form-group col-xs-2">
-						<label for="code">Description</label>			
+					<div class="row" >
+						<div class="form-group col-xs-2">
+							<label for="code">Created On</label>			
+						</div>
+						<div class="form-group col-xs-6">	
+							<input type="text" name="issueCreateDate" id="issueCreateDate" ng-model="closeCtrl.cissueCreateDate" class="form-control" disabled/>
+						</div>
 					</div>
-					<div class="form-group col-xs-6">	
-						<input type="text" name="issueDesc" id="issueDesc" ng-model="closeCtrl.issueDesc" class="form-control"/>
-						<span ng-show="closeCtrl.descErrMsg">Description required</span>
-					</div>
-				</div>
-				<div class="row" >
-					<div class="form-group col-xs-2">
-						<label for="code">Created On</label>			
-					</div>
-					<div class="form-group col-xs-6">	
-						<input type="text" name="issueCreateDate" id="issueCreateDate" ng-model="closeCtrl.cissueCreateDate" class="form-control" disabled/>
-					</div>
-				</div>
-				<div class="row col-xs-8 col-xs-offset-2">
-					<div class="form-group col-xs-2">
+					<div class="row col-xs-8 col-xs-offset-2">
+						<div class="form-group col-xs-2">
 						
 							<button ng-click='closeCtrl.closeIssue(frm)' class="btn btn-primary">Submit</button>
 						</div>
@@ -45,14 +45,13 @@
 						</div>
 					</div>
 				</div>
-								
-				<toaster-container toaster-options="{'time-out': 5000, 'close-button':true, 'animation-class': 'toast-center'}"></toaster-container>
-		    </div>
+									
+					<toaster-container toaster-options="{'time-out': 5000, 'close-button':true, 'animation-class': 'toast-center'}"></toaster-container>
+			</div>
 		</div>
 	</div>
 </div>
 
-</div>
  
 
 
