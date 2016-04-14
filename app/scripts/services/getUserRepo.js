@@ -70,6 +70,7 @@ gitApp.service('getUserRepoService',function($http,$q) {
 	}
 
 	repo.updateIssueService = function(issueData,encodeStr,username,repo,number){
+		console.log("https://api.github.com/repos/"+username+"/"+repo+"/issues/"+number);
 		var deffer = $q.defer();
 		$http({
 	          url: "https://api.github.com/repos/"+username+"/"+repo+"/issues/"+number,
@@ -77,8 +78,10 @@ gitApp.service('getUserRepoService',function($http,$q) {
 	          data: issueData,
 	          headers: {'Content-Type': 'application/json','Authorization': 'Basic '+encodeStr+"=" }
 	    }).then(function successCall(res){
+	    	console.log(res);
 	    	deffer.resolve(res.data);
 	    },function errorCall(errRes){
+	    	console.log(errRes)
 	    	deffer.reject(errRes.data);
 	    });   
 	    return deffer.promise;	

@@ -2,16 +2,6 @@ var gitApp = angular.module("gitApp");
 
 angular.module("gitApp").controller("getIssueController", ['$scope','$route','$http','$location','$routeParams','$window','$interval','getUserRepoService','getUserDataFactory',function($scope,$http,$route,$location,$routeParams,$window,$interval,getUserRepoService,getUserDataFactory){
 	
-
-	$scope.updateTodo = function(value) {
-    console.log('Saving title ' + value);
-    alert('Saving title ' + value);
-  };
-  
-  $scope.cancelEdit = function(value) {
-    console.log('Canceled editing', value);
-    alert('Canceled editing of ' + value);
-  };
 	var vm = this;
 	
 	function initData(){
@@ -31,10 +21,19 @@ angular.module("gitApp").controller("getIssueController", ['$scope','$route','$h
 		vm.sortType     = '6'; // set the default sort type
  		vm.sortReverse  = false;  // set the default sort order
  		vm.$route = $route;
-	
+ 		vm.checked = false;
+ 		vm.state = 'All';
+ 		vm.selected = 'All';
+   		$(".dropdown-toggle").dropdown();
+   		var date = new Date();
+		var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+		var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+		vm.startdate = moment(firstDay).format("DD-MM-YYYY");
+		vm.enddate = moment(lastDay).format("DD-MM-YYYY");
 	}
 	
    initData();
+   
    var username = getUserDataFactory.getUserName();
    vm.repo = getUserDataFactory.getUserRepo();
    vm.descriptionsDisp = getUserDataFactory.getDescription();
@@ -45,4 +44,13 @@ angular.module("gitApp").controller("getIssueController", ['$scope','$route','$h
 	vm.logout = function(){
      $location.path("/");
   	}
+  	vm.setSelectedState = function(state){
+  		vm.state = state;
+  		vm.selected = state;
+  	}
+  	vm.isChecked = function(check) {
+  		return vm.selected === check;
+  	}
 }]);
+
+	

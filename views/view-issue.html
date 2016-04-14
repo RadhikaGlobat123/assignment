@@ -12,7 +12,7 @@
 		<div class="panel-body">
 		    <div class="col-sm-8 col-sm-offset-3 text-left"> 
 		     	<div class="row" >
-					<div class="form-group col-xs-2">
+					<div class="form-group col-xs-3">
 						<label for="code">Title</label>			
 					</div>
 					<div class="form-group col-xs-2">	
@@ -20,23 +20,23 @@
 					</div>
 				</div>
 				<div class="row" >
-					<div class="form-group col-xs-2">
+					<div class="form-group col-xs-3">
 						<label for="code">Description</label>			
 					</div>
-					<div class="form-group col-xs-2">	
+					<div class="form-group col-xs-6">	
 						<span ng-bind="viewCtrl.issueDesc"></span>
 					</div>
 				</div>
 				<div class="row" >
-					<div class="form-group col-xs-2">
+					<div class="form-group col-xs-3">
 						<label for="code">Created On</label>			
 					</div>
-					<div class="form-group col-xs-2">	
+					<div class="form-group col-xs-6">	
 						<span ng-bind="viewCtrl.vissueCreateDate"></span>
 					</div>
 				</div>
 				<div class="row">
-					<div class="form-group col-xs-2" >
+					<div class="form-group col-xs-3" >
 						<label for="code">Comments</label>	
 					</div>
 					<div class="form-group col-xs-2" ng-hide="viewCtrl.noComment"style="width: 500px; height: 65px; overflow:auto;">
@@ -51,7 +51,7 @@
 					<input class= "form-group col-xs-1" type="checkbox" ng-model="viewCtrl.check" ng-true-value="'yes'" ng-false-value="'no'">
 				</div>
 				<div class="row" ng-show="viewCtrl.check == 'yes'">
-					<div class="form-group col-xs-2">
+					<div class="form-group col-xs-3">
 						<label for="code">Comment</label>
 					</div>
 					<div class="form-group col-xs-6" >	

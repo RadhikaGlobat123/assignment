@@ -9,7 +9,7 @@
 		<div class="panel-body">
 		    <div class="col-sm-8 col-sm-offset-3 text-left"> 
 		      	<div class="row" >
-					<div class="form-group col-xs-2">
+					<div class="form-group col-xs-3">
 						<label for="code">Title</label>			
 					</div>
 					<div class="form-group col-xs-6">	
@@ -20,7 +20,7 @@
 					</div>
 				</div>
 				<div class="row" >
-					<div class="form-group col-xs-2">
+					<div class="form-group col-xs-3">
 						<label for="code">Description</label>			
 					</div>
 					<div class="form-group col-xs-6">	
@@ -31,7 +31,7 @@
 					</div>
 				</div>
 				<div class="row" >
-					<div class="form-group col-xs-2">
+					<div class="form-group col-xs-3">
 						<label for="code">Created On</label>			
 					</div>
 					<div class="form-group col-xs-6">	
@@ -39,7 +39,7 @@
 					</div>
 				</div>
 				<div class="row" >
-					<div class="form-group col-xs-2">
+					<div class="form-group col-xs-3">
 						<label for="code">State</label>			
 					</div>
 					 <div class="form-group col-xs-1" ng-repeat="state in editCtrl.states">
@@ -47,7 +47,7 @@
 				    </div>
 				</div>
 				<div class="row">
-					<div class="form-group col-xs-2" >
+					<div class="form-group col-xs-3" >
 						<label for="code">Comments</label>	
 					</div>
 					<div class="form-group col-xs-2" ng-hide="editCtrl.noComment" style="width: 500px; height: 65px; overflow:auto;">
@@ -56,7 +56,7 @@
 					<span class="form-group col-xs-2" ng-show="editCtrl.noComment">No Comments</span>
 				</div>
 				<div class="row">
-					<div class="form-group col-xs-2">
+					<div class="form-group col-xs-3">
 						<label for="code">Add Comment</label>	
 					</div>
 					<input class= "form-group col-xs-1" type="checkbox" ng-model="editCtrl.check" ng-true-value="'yes'" ng-false-value="'no'">

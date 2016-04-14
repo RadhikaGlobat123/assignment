@@ -53,7 +53,7 @@ gitApp.controller("loginController", ['$scope','$http','$location','$routeParams
 		}
 
 	vm.getIssue = function(sItem){
-		
+		vm.progressbar.start();
 		getUserDataFactory.setUserRepo(sItem.name);
      	var arr = [];
      
@@ -96,6 +96,7 @@ gitApp.controller("loginController", ['$scope','$http','$location','$routeParams
 	  		
 	  		vm.descriptions = arr;
 	  		getUserDataFactory.storeDescription(vm.descriptions);
+	  		vm.progressbar.complete();
 	  		$location.path("/dashboard");
       	});
     }	

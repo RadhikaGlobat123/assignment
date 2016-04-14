@@ -9,3 +9,6 @@
 .edit-in-place input {
   display: none;
 }
+.active {
+	background:#286090
+}

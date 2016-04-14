@@ -17,8 +17,7 @@ gitApp.controller("dashboardController", ['$http','$routeParams','getUserRepoSer
  
 
   getUserRepoService.getOpenIssues(username,repo).then(function(res){
-
-    vm.openIssue =  _.size(res);console.log(vm.openIssue)
+    vm.openIssue =  _.size(res);
     },function(errRes){
       vm.openIssue = 'Not found';
     });

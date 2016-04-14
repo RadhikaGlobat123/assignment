@@ -1,6 +1,6 @@
 var gitApp = angular.module("gitApp");
 
-angular.module("gitApp").controller("editIssueController", ['$http','$location','$routeParams','$window','getUserRepoService','$timeout','getUserDataFactory','toaster',function($http,$location,$routeParams,$window,getUserRepoService,$timeout,getUserDataFactory,toaster){
+gitApp.controller("editIssueController", ['$http','$location','$routeParams','$window','getUserRepoService','$timeout','getUserDataFactory','toaster',function($http,$location,$routeParams,$window,getUserRepoService,$timeout,getUserDataFactory,toaster){
 	
 	var vm = this;
 
